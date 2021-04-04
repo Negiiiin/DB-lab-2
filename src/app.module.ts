@@ -1,11 +1,28 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './Users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { HelloModule } from './hello/hello.module';
+import UserEntity from './../db/user.entity';
+import BooksModule from './Books/books.module';
+import GenreModule from './Genre/genre.module';
+import BookEntity from './../db/book.entity';
+import GenreEntity from './../db/genre.entity';
 
 @Module({
-  imports: [HelloModule],
+  imports: [UserModule,
+    BooksModule,
+    GenreModule,
+    TypeOrmModule.forFeature(
+      [UserEntity, BookEntity, GenreEntity],
+    ),
+
+    TypeOrmModule.forRoot(),
+
+    HelloModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -8,6 +8,6 @@ export class PersonDto {
     @IsNumber()
     @IsOptional()
     @Min(1960)
-    @ApiPropertyOptional({description: 'Optional', default: 1998, minimum: 1960 })
+    @ApiPropertyOptional({ description: 'Optional', default: 1998, minimum: 1960 })
     year: number;
 }

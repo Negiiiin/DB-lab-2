@@ -6,14 +6,13 @@ import { ApiQuery, ApiResponse } from '@nestjs/swagger';
 
 @Controller('hello')
 export class HelloController {
-    constructor(private readonly helloService: HelloService,) {}
+    constructor(private readonly helloService: HelloService,) { }
 
     @Header('Content-Type', 'application/json')
     @ApiResponse({ status: 200, description: 'Say Hello!!!' })
     @Post('welcome')
     @Header('Content-Type', 'application/json')
-    async sayWelcome(@Body() personDto: PersonDto): Promise<{ data: String }>
-    {
+    async sayWelcome(@Body() personDto: PersonDto): Promise<{ data: String }> {
         let msg = await this.helloService.welcome(personDto);
         return { data: msg };
     }
