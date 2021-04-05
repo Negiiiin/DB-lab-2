@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './Users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HelloModule } from './hello/hello.module';
+import { JobseekersModule } from './jobseekers/jobseekers.module';
 import UserEntity from './../db/user.entity';
 import BooksModule from './Books/books.module';
 import GenreModule from './Genre/genre.module';
@@ -21,6 +22,8 @@ import GenreEntity from './../db/genre.entity';
     TypeOrmModule.forRoot(),
 
     HelloModule,
+
+    JobseekersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
