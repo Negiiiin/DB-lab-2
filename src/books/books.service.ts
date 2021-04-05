@@ -27,4 +27,26 @@ export class BooksService {
         await BookEntity.remove(book);
         return 'book deleted successfully'
     }
+
+    async update(bookID, updatedData: CreateBookDto): Promise<String> {
+        const book = await BookEntity.findByIds(bookID);
+        const bookInfo = book.shift();
+
+        if ("name" in updatedData) {
+            bookInfo.name = updatedData.name
+        }
+        if ("genreIDs" in updatedData) {
+            bookInfo.genres = [];
+            for (let i = 0; i < updatedData.genreIDs.length; i++) {
+                const genre = await GenreEntity.findOne(updatedData.genreIDs[i]);
+                bookInfo.genres.push(genre);
+            }
+        }
+        if ("userID" in updatedData) {
+            bookInfo.user = await UserEntity.findOne(updatedData.userID);
+        }
+
+        await bookInfo.save();
+        return "book updated";
+    }
 }
