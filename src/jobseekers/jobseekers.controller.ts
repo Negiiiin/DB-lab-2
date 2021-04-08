@@ -8,7 +8,7 @@ import CreateProjectDto from './dto/create-project.dto';
 export class JobseekersController {
     constructor(private readonly jobseekersService: JobseekersService) { }
 
-    @Post('insertemployer')
+    @Post('employer')
     postEmployer(@Body() employer: CreateEmployerDto) {
         return this.jobseekersService.insertEmployer(employer);
     }
@@ -17,7 +17,7 @@ export class JobseekersController {
         return this.jobseekersService.getAllEmployers();
     }
 
-    @Post('insertemployee')
+    @Post('employee')
     postEmployee(@Body() employee: CreateEmployeeDto) {
         return this.jobseekersService.insertEmployee(employee);
     }
@@ -27,7 +27,7 @@ export class JobseekersController {
         return this.jobseekersService.getAllEmployees();
     }
 
-    @Post('insertproject')
+    @Post('project')
     postproject(@Body() project: CreateProjectDto) {
         return this.jobseekersService.insertProject(project);
     }
@@ -37,17 +37,17 @@ export class JobseekersController {
         return this.jobseekersService.getAllProjects();
     }
 
-    @Delete('deletemployer/:employerID')
+    @Delete('employer/:employerID')
     deleteEmployer(@Param('employerID') employerID: Number) {
         return this.jobseekersService.deleteEmployer(employerID);
     }
 
-    @Delete('deletemployee/:employeeID')
+    @Delete('employee/:employeeID')
     deleteEmployee(@Param('employeeID') employeeID: Number) {
         return this.jobseekersService.deleteEmployee(employeeID);
     }
 
-    @Delete('deleteproject/:projectID')
+    @Delete('project/:projectID')
     deleteProject(@Param('projectID') projectID: Number) {
         return this.jobseekersService.deleteProject(projectID);
     }
